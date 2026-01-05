@@ -2,47 +2,40 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Zoho Button Widget</title>
+  <title>Zoho Widget Test</title>
 
-  <!-- Zoho CRM SDK (MANDATORY) -->
+  <!-- Load Zoho SDK -->
   <script src="https://js.zohostatic.com/crm/v2.0/sdk.js"></script>
-
-  <style>
-    body {
-      font-family: Arial;
-      padding: 20px;
-    }
-    .card {
-      background: #f4f6f8;
-      padding: 15px;
-      border-radius: 8px;
-      width: 300px;
-    }
-  </style>
 </head>
 
 <body>
-  <div class="card">
-    <h3>External Widget</h3>
-    <p><b>Module:</b> <span id="module">Waiting...</span></p>
-    <p><b>Record ID:</b> <span id="recordId">Waiting...</span></p>
-  </div>
+  <h2>Zoho Widget Loaded</h2>
+  <p id="status">Waiting for Zoho...</p>
 
   <script>
-    ZOHO.embeddedApp.on("PageLoad", function(data) {
-      console.log("Zoho Data:", data);
-      console.log("Hii");
-      document.getElementById("module").innerText = data.Entity;
-      document.getElementById("recordId").innerText = data.EntityId[0];
-    });
+    // Simple JS test
+    console.log("JS is running");
 
-    ZOHO.embeddedApp.init();
+    // Wait until SDK is available
+    window.onload = function () {
+      if (typeof ZOHO === "undefined") {
+        document.getElementById("status").innerText = "ZOHO SDK NOT LOADED ❌";
+        console.error("ZOHO is undefined");
+        return;
+      }
+
+      document.getElementById("status").innerText = "ZOHO SDK Loaded ✅";
+
+      ZOHO.embeddedApp.on("PageLoad", function (data) {
+        console.log("PageLoad Data:", data);
+        document.getElementById("status").innerText =
+          "Module: " + data.Entity + " | Record: " + data.EntityId[0];
+      });
+
+      ZOHO.embeddedApp.init();
+    };
   </script>
 </body>
 </html>
-
-</html>
-
-
 
 
