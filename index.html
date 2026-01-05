@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>External Button Widget</title>
-
-  <!-- Zoho CRM SDK -->
-  <script src="https://js.zohostatic.com/crm/sdk/sdk.js"></script>
-
-  <link rel="stylesheet" href="style.css">
+  <title>Button Widget</title>
+  <script src="https://js.zohostatic.com/crm/v2.0/sdk.js"></script>
 </head>
 <body>
 
-  <div class="card">
-    <h3>External Widget</h3>
-    <p id="msg">Initializing...</p>
+<div class="box">
+  <h3>External Widget</h3>
+  <p><b>Module:</b> <span id="module">-</span></p>
+  <p><b>Record ID:</b> <span id="recordId">-</span></p>
+  <button onclick="showAlert()">Click Me</button>
+</div>
 
-    <p><b>Module:</b> <span id="module">-</span></p>
-    <p><b>Record ID:</b> <span id="rid">-</span></p>
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
+
