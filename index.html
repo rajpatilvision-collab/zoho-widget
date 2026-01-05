@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Button Widget</title>
+  <meta charset="UTF-8">
+  <title>Zoho Button Widget</title>
+
+  <!-- Zoho CRM SDK (MANDATORY) -->
   <script src="https://js.zohostatic.com/crm/v2.0/sdk.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    .card {
+      background: #f4f6f8;
+      padding: 15px;
+      border-radius: 8px;
+      width: 300px;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="card">
+    <h3>External Widget</h3>
+    <p><b>Module:</b> <span id="module">Waiting...</span></p>
+    <p><b>Record ID:</b> <span id="recordId">Waiting...</span></p>
+  </div>
 
-<div class="box">
-  <h3>External Widget</h3>
-  <p><b>Module:</b> <span id="module">-</span></p>
-  <p><b>Record ID:</b> <span id="recordId">-</span></p>
-  <button onclick="showAlert()">Click Me</button>
-</div>
+  <script>
+    ZOHO.embeddedApp.on("PageLoad", function(data) {
+      console.log("Zoho Data:", data);
 
-<script src="script.js"></script>
+      document.getElementById("module").innerText = data.Entity;
+      document.getElementById("recordId").innerText = data.EntityId[0];
+    });
+
+    ZOHO.embeddedApp.init();
+  </script>
 </body>
 </html>
+
+</html>
+
+
 
